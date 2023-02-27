@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
+});
+
+Route::get('/', function() {
+    return view('home');
+});
+
+
+
+
+// dinamic routing
+Route::get('/halo/{nama?}', function($nama = 'Dunia') {
+    return 'Halo ' . $nama;
 });

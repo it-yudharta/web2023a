@@ -1,3 +1,10 @@
+## Laporan Keuangan Sederhana
+1. Halaman Awal
+    - Laporan Kas
+2. Login Admin.
+3. Daftar Anggota.
+4. Daftar Iuran.
+
 ### Pesiapan
 
 - install git atau github.

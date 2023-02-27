@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,11 @@ Route::get('/', function() {
     return view('home');
 });
 
+Route::get('/members', function() {
+    $members = Member::all();
 
-
+    return $members;
+});
 
 // dinamic routing
 Route::get('/halo/{nama?}', function($nama = 'Dunia') {

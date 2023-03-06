@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Member;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,28 @@ Route::get('/members', function() {
     $members = Member::all();
 
     return view('member', [ 'members' => $members ]);
+});
+
+Route::get('/members/create', function() {
+    return view('member_create');
+});
+
+Route::post('/members', function(Request $request) {
+    $request->validate([
+        'name' => 'required',
+        'age' => 'required|integer',
+        'address' => ['required', 'string'],
+        'phone' => ['required', 'digits_between:10,13'],
+    ]);
+
+    $member = new Member;
+    $member->name = $request->name;
+    $member->age = $request->age;
+    $member->address = $request->address;
+    $member->phone = $request->phone;
+    $member->save();
+
+    return redirect('/members');
 });
 
 Route::get('/members/{memberId}/edit', function($memberId) {

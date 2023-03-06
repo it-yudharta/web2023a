@@ -9,7 +9,7 @@
 <body>
     <h3>
         Daftar Anggota
-        <a href="/">Tambah Data</a>
+        <a href="/members/create">Tambah Data</a>
     </h3>
     <table>
         <tr>

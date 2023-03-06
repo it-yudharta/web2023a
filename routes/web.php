@@ -25,7 +25,7 @@ Route::get('/', function() {
 Route::get('/members', function() {
     $members = Member::all();
 
-    return $members;
+    return view('member', [ 'members' => $members ]);
 });
 
 // dinamic routing

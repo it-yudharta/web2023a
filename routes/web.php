@@ -28,6 +28,12 @@ Route::get('/members', function() {
     return view('member', [ 'members' => $members ]);
 });
 
+Route::get('/members/{memberId}/edit', function($memberId) {
+    $member = Member::find($memberId);
+
+    return view('member_edit', ['member' => $member]);
+});
+
 // dinamic routing
 Route::get('/halo/{nama?}', function($nama = 'Dunia') {
     return 'Halo ' . $nama;

@@ -9,6 +9,7 @@
 <body>
     <h3>
         Daftar Anggota
+        <a href="/">Tambah Data</a>
     </h3>
     <table>
         <tr>
@@ -24,7 +25,7 @@
             <td>{{ $member->name }}</td>
             <td>{{ $member->age }}</td>
             <td>{{ $member->phone }}</td>
-            <td>Ubah/Hapus</td>
+            <td><a href="/members/{{$member->id}}/edit" target="_blank">Ubah</a></td>
         </tr>
         @endforeach
     </table>

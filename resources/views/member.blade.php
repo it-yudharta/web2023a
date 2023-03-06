@@ -25,7 +25,7 @@
             <td>{{ $member->name }}</td>
             <td>{{ $member->age }}</td>
             <td>{{ $member->phone }}</td>
-            <td><a href="/members/{{$member->id}}/edit" target="_blank">Ubah</a></td>
+            <td><a href="/members/{{$member->id}}/edit">Ubah</a></td>
         </tr>
         @endforeach
     </table>

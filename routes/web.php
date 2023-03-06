@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MemberController;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,66 +24,13 @@ Route::get('/', function() {
     return view('home');
 });
 
-Route::get('/members', function() {
-    // SELECT * FROM members
-    $members = Member::all();
-
-    return view('member', [ 'members' => $members ]);
-});
-
-Route::get('/members/create', function() {
-    return view('member_create');
-});
-
-Route::post('/members', function(Request $request) {
-    $request->validate([
-        'name' => 'required',
-        'age' => 'required|integer',
-        'address' => ['required', 'string'],
-        'phone' => ['required', 'digits_between:10,13'],
-    ]);
-
-    // INSERT INTO members(...) values (...)
-    $member = new Member;
-    $member->name = $request->name;
-    $member->age = $request->age;
-    $member->address = $request->address;
-    $member->phone = $request->phone;
-    $member->save();
-
-    return redirect('/members');
-});
-
-Route::get('/members/{memberId}/edit', function($memberId) {
-    // SELECT * FROM members WHERE id = 3
-    $member = Member::find($memberId);
-
-    return view('member_edit', ['member' => $member]);
-});
-
-Route::put('/members/{memberId}', function(Request $request, $memberId) {
-    $request->validate([
-        'name' => 'required',
-        'age' => 'required|integer',
-        'address' => ['required', 'string'],
-        'phone' => ['required', 'digits_between:10,20'],
-    ]);
-
-    $member = Member::find($memberId);
-    $member->name = $request->name;
-    $member->age = $request->age;
-    $member->address = $request->address;
-    $member->phone = $request->phone;
-    $member->save();
-
-    return redirect('/members');
-});
-
-Route::delete('/members/{memberId}', function(Request $request, $memberId) {
-    $member = Member::find($memberId);
-    $member->delete();
-
-    return redirect('/members');
+Route::prefix('/members')->group(function() {
+    Route::get('/', [MemberController::class, 'index']);
+    Route::get('/create', [MemberController::class, 'create']);
+    Route::post('/', [MemberController::class, 'store']);
+    Route::get('/{memberId}/edit', [MemberController::class, 'edit']);
+    Route::put('/{memberId}', [MemberController::class, 'update']);
+    Route::delete('/{memberId}', [MemberController::class, 'delete']);
 });
 
 // dinamic routing

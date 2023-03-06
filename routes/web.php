@@ -78,6 +78,13 @@ Route::put('/members/{memberId}', function(Request $request, $memberId) {
     return redirect('/members');
 });
 
+Route::delete('/members/{memberId}', function(Request $request, $memberId) {
+    $member = Member::find($memberId);
+    $member->delete();
+
+    return redirect('/members');
+});
+
 // dinamic routing
 Route::get('/halo/{nama?}', function($nama = 'Dunia') {
     return 'Halo ' . $nama;

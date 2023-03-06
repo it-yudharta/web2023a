@@ -30,5 +30,11 @@
         <input type="text" id="fphone" name="phone" value="{{$member->phone}}"><br><br>
         <button type="submit">Simpan</button>
     </form>
+    <br><br>
+    <form action="/members/{{$member->id}}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Hapus Data</button>
+    </form>
 </body>
 </html>

@@ -11,12 +11,12 @@ class MemberController extends Controller
     {
         $members = Member::all();
 
-        return view('member', [ 'members' => $members ]);
+        return view('member.index', [ 'members' => $members ]);
     }
 
     public function create()
     {
-        return view('member_create');
+        return view('member.create');
     }
 
     public function store(Request $request)
@@ -43,7 +43,7 @@ class MemberController extends Controller
     {
         $member = Member::find($memberId);
 
-        return view('member_edit', ['member' => $member]);
+        return view('member.edit', ['member' => $member]);
     }
 
     public function update(Request $request, $memberId)

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -211,5 +212,9 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+
+    'session_start_date' => Carbon::parse('2022-12-30 00:00:00'),
+
+    'payment_amount' => 5000,
 
 ];

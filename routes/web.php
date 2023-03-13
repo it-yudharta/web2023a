@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PaymentController;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,8 @@ Route::prefix('/members')->group(function() {
     Route::put('/{memberId}', [MemberController::class, 'update']);
     Route::delete('/{memberId}', [MemberController::class, 'delete']);
 });
+
+Route::get('/payment', [PaymentController::class, 'index']);
 
 // dinamic routing
 Route::get('/halo/{nama?}', function($nama = 'Dunia') {

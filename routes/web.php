@@ -34,7 +34,10 @@ Route::prefix('/members')->group(function() {
     Route::delete('/{memberId}', [MemberController::class, 'delete']);
 });
 
-Route::get('/payment', [PaymentController::class, 'index']);
+Route::prefix('/payments')->group(function() {
+    Route::get('/{memberId}', [PaymentController::class, 'index']);
+    Route::post('/{memberId}', [PaymentController::class, 'create']);
+});
 
 // dinamic routing
 Route::get('/halo/{nama?}', function($nama = 'Dunia') {

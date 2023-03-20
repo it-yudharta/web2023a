@@ -25,7 +25,10 @@
             <td>{{ $member->name }}</td>
             <td>{{ $member->age }}</td>
             <td>{{ $member->phone }}</td>
-            <td><a href="/members/{{$member->id}}/edit">Ubah</a></td>
+            <td>
+                <a href="/members/{{$member->id}}/edit">Ubah</a>
+                <a href="/payments/{{$member->id}}">Bayar</a>
+            </td>
         </tr>
         @endforeach
     </table>

@@ -10,6 +10,7 @@
     <h3>
         Daftar Anggota
         <a href="/members/create">Tambah Data</a>
+        <a href="/logout">Keluar</a>
     </h3>
     <table>
         <tr>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PaymentController;
 use App\Models\Member;
@@ -23,9 +24,16 @@ Route::get('/welcome', function () {
 
 Route::get('/', function() {
     return view('home');
+})->name('home');
+
+Route::prefix('/login')->group(function() {
+    Route::get('/', [AuthController::class, 'show'])->middleware('guest')->name('login');
+    Route::post('/', [AuthController::class, 'login']);
 });
 
-Route::prefix('/members')->group(function() {
+Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::prefix('/members')->middleware('auth')->group(function() {
     Route::get('/', [MemberController::class, 'index']);
     Route::get('/create', [MemberController::class, 'create']);
     Route::post('/', [MemberController::class, 'store']);
@@ -34,7 +42,7 @@ Route::prefix('/members')->group(function() {
     Route::delete('/{memberId}', [MemberController::class, 'delete']);
 });
 
-Route::prefix('/payments')->group(function() {
+Route::prefix('/payments')->middleware('auth')->group(function() {
     Route::get('/{memberId}', [PaymentController::class, 'index']);
     Route::post('/{memberId}', [PaymentController::class, 'create']);
 });
